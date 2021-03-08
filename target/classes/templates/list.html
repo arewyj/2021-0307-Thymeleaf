@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>测试thymeleaf</title>
+</head>
+<body>
+
+<ul>
+    <li >下标---密码---年龄---颜色</li>
+    <li th:each="stu : ${stuList}">
+        <span th:text="${stu.code}"></span>---
+        <span th:text="${stu.pass}"></span>---
+        <span th:text="${stu.age} >= 33 ? '能退休' :'不能'"></span>---
+        <span th:text="${stu.likeColor}"></span>
+    </li>
+</ul>
+
+<ul>
+    <li >下标---密码---年龄---颜色 ---- 资历</li>
+    <li th:each="stu : ${stuList}">
+        <span th:text="${stu.code}"></span>---
+        <span th:text="${stu.pass}"></span>---
+        <span th:text="${stu.age} >= 33 ? '能退休' :'不能'"></span>---
+        <span th:text="${stu.likeColor}"></span> ---
+        <span th:switch="${stu.age}">
+            <span th:case="'22'"> 1号员工，初级员工</span>
+            <span th:case="'33'"> 2号员工，中级员工</span>
+            <span th:case="'44'"> 3号员工，高级员工</span>
+            <span th:case="'55'"> 4号员工，老员工</span>
+            <span th:case="'66'"> 5号员工，骨灰级</span>
+
+        </span>
+    </li>
+</ul>
+</body>
+
+<script th:inline="javascript">
+
+    const stuList =/*[[${stuList}]]*/;
+    const stu =/*[[${stuList[0]}]]*/;
+    const age=/*[[${stuList[0].age}]]*/;
+
+    console.log("集合 ：" + stuList);
+    console.log("对象 ：" + stu);
+    console.log("属性 ：" + age);
+    stuList.forEach(stu=>{
+        console.log("姓名："+ stu.code + "--> 年龄是:" + stu.age)
+    })
+
+</script>
+</html>

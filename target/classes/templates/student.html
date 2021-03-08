@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>测试thymeleaf</title>
+</head>
+<body>
+    你好-->:<span th:text="${stu.code}"></span><br>
+    <!--  data-th-text 指令支持非 h5-->
+    密码是-->：<span data-th-text="${stu.pass}"></span><br>
+    <!--对象['属性值'] 如果变量是动态的，可以用此属性-->
+    您的年龄是-->：<span th:text="${stu['age']}"></span><br>
+    <!--对象的value中有html需要渲染的使用 utext 输出-->
+    您喜欢的颜色是-->:<span th:utext="${stu.likeColor}"></span>
+
+<div th:object="${stu}">
+    <span th:text="*{code}"></span><br>
+    <span th:text="*{pass}"></span><br>
+    <span th:text="*{age}"></span><br>
+    <span th:text="*{likeColor}"></span><br>
+</div>
+<--------------------------------------------------------------------->
+    根据下标截取-->：<span th:text="${stu.code.substring(2)}"></span><br>
+    分割-->：<span th:text="${stu.code.split('')[2]}"></span><br>
+
+
+布尔字面值-->:<span th:if="${stu.age} >= 18">
+        成年
+    </span> <br>
+    <span th:if="${stu.age} <= 43">
+        未成年
+    </span><br>
+
+
+    拼接 -->: <span th:text=" '你好' + ${stu.code} + '真的66666'"></span><br>
+            <span th:text="|你好${stu.code}真的66666|"></span><br>
+
+
+    算术运算-->:<span th:text="${stu.age} * 3 "></span><br>
+
+条件运算之三元运算 ------>：<span th:text="${stu.age} >= 18 ? '成年' :'没成年'"></span>       <br>
+
+
+</body>
+</html>
